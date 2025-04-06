@@ -18,19 +18,20 @@ export class ServicesOptionsSeedService {
   async run() {
 
     const serviceOptions = [
-      { type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR, serviceType: 'cleaning' },
-      { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, serviceType: 'cleaning' },
-      { type: ServicesOptionsEnum.CLEANING_GENEARL, serviceType: 'cleaning' },
-      { type: ServicesOptionsEnum.MOVING, serviceType: 'moving' },
+      { type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR, serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.CLEANING_GENEARL, serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.MOVING, serviceType: 'MOVING' },
     ];
 
     for (const option of serviceOptions) {
+
+      console.log(ServicesEnum[option.serviceType])
       const service = await this.serviceRepository.findOne({
         where: { type: ServicesEnum[option.serviceType] },
       })
-  
+   
       if (!service) {
-        console.log(`Service ${option.serviceType} not found.`);
         continue;
       }
 
@@ -39,15 +40,13 @@ export class ServicesOptionsSeedService {
       });
 
       if (!existingOption) {
+
         const serviceOption = this.serviceOptionRepository.create({
-          type: option.type,
           service,
+          type: option.type,
         });
 
         await this.serviceOptionRepository.save(serviceOption);
-        console.log(`Inserted service option: ${option.type} for service ${option.serviceType}`);
-      } else {
-        console.log(`Service option ${option.type} for service ${option.serviceType} already exists.`);
       }
     }
   }

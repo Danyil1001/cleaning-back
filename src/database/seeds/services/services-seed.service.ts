@@ -25,10 +25,7 @@ export class ServicesSeedService {
 
       if (!existingService) {
         await this.serviceRepository.save(service);
-        console.log(`Inserted service: ${service.type}`);
-      } else {
-        console.log(`Service ${service.type} already exists.`);
-      }
+      } 
     }
   }
 }

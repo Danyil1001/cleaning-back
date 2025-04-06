@@ -5,6 +5,8 @@ import { ServicesSeedModule } from './services/services-seed.module';
 import { ServicesOptionsSeedModule } from './services_options/services_options.module';
 import { TypeOrmConfigService } from '../typeorm-config.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { ServiceOptionItemAmountPriceSeedModule } from './services_options_item_amount.ts/services_options_item_amount-seed.module';
+import { ServicesItemSeedModule } from './service_item_type/service_item_type-seed.module';
 
 @Module({
   imports: [
@@ -19,7 +21,9 @@ import { DataSource, DataSourceOptions } from 'typeorm';
       },
     }),
     ServicesSeedModule,
-    ServicesOptionsSeedModule
+    ServicesOptionsSeedModule,
+    ServiceOptionItemAmountPriceSeedModule,
+    ServicesItemSeedModule
   ],
 })
 export class SeedModule { }
