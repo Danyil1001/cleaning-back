@@ -13,9 +13,12 @@ export class ServiceOptionItemAmountPrice {
   @ManyToOne(() => ServiceItemType)
   serviceItemType: ServiceItemType;
 
-  @Column()
-  amount: number; 
+  @Column('decimal', { precision: 10, scale: 2 })
+  amount: number;
 
   @Column()
-  price: number; 
+  time: number;
+
+  @Column()
+  price: number;
 }

@@ -18,19 +18,17 @@ export class ServicesOptionsSeedService {
   async run() {
 
     const serviceOptions = [
-      { type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR, serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.CLEANING_GENEARL, serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.MOVING, serviceType: 'MOVING' },
+      { type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR, title: "Reinigung nach Renovierung", serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.CLEANING_GENEARL, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
+      { type: ServicesOptionsEnum.MOVING, title: 'Umzug', serviceType: 'MOVING' },
     ];
 
     for (const option of serviceOptions) {
-
-      console.log(ServicesEnum[option.serviceType])
       const service = await this.serviceRepository.findOne({
         where: { type: ServicesEnum[option.serviceType] },
       })
-   
+
       if (!service) {
         continue;
       }
@@ -44,6 +42,7 @@ export class ServicesOptionsSeedService {
         const serviceOption = this.serviceOptionRepository.create({
           service,
           type: option.type,
+          title: option.title
         });
 
         await this.serviceOptionRepository.save(serviceOption);
