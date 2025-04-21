@@ -10,12 +10,15 @@ import { ServicesItemTypeModule } from './services_item_type/services_item_type.
 import { AppDataSource } from './database/data-source';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import emailConfig from './config/email.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env'],
+      load: [emailConfig],
+
     }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,

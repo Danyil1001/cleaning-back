@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ServicesService } from './services.service';
 import { Service } from './entities/services.entity';
+import {  ServiceRequestDto } from './dto/service-request.dto';
 
 @Controller('services')
 export class ServicesController {
@@ -14,5 +15,10 @@ export class ServicesController {
     @Get('/cleaning')
     getCleaningOptions(): Promise<Service | null> {
         return this.servicesService.getCleaningOptions()
+    }
+
+    @Post('/request')
+    sendRequestForService(@Body() serviceRequestDto:ServiceRequestDto): Promise<Service | null> {
+        return this.servicesService.sendRequestForService(serviceRequestDto)
     }
 }
