@@ -10,7 +10,6 @@ export class ServiceRequestDto {
 
     @IsString()
     phone_number: string;
- 
     @IsOptional()
     address?: string;
 
@@ -31,4 +30,12 @@ export class ServiceRequestDto {
 
     @IsNumber()
     time: number
+
+    @IsOptional()
+    @IsString()
+    moving_from: string
+    
+    @IsOptional()
+    @IsString()
+    moving_to: string
 }

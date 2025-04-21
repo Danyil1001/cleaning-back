@@ -17,6 +17,11 @@ export class ServicesController {
         return this.servicesService.getCleaningOptions()
     }
 
+    @Get('/moving')
+    getMovingOptions(): Promise<Service | null> {
+        return this.servicesService.getMovingOptions()
+    }
+
     @Post('/request')
     sendRequestForService(@Body() serviceRequestDto:ServiceRequestDto): Promise<Service | null> {
         return this.servicesService.sendRequestForService(serviceRequestDto)

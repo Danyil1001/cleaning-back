@@ -8,7 +8,9 @@ export const getRequestTemplate = ({
     amountOfStoreRooms,
     price,
     phone_number,
-    time
+    time,
+    moving_from,
+    moving_to
 }
     : {
         clientName: string
@@ -19,8 +21,10 @@ export const getRequestTemplate = ({
         amountOfRooms: number | string
         amountOfBathrooms: number | string
         amountOfStoreRooms: number | string
-        price: number|string
-        time: number|string
+        price: number | string
+        time: number | string
+        moving_from?: string
+        moving_to?: string
     }
 ) => `
 <!DOCTYPE html>
@@ -93,6 +97,8 @@ export const getRequestTemplate = ({
         Amount of store rooms: ${amountOfStoreRooms || ''}<br><br>
         Approximate price: ${price || ''}<br><br>
         Approximate time: ${time || ''}<br><br>
+        ${moving_from ? `From: ${moving_from}` : ""}<br><br>
+        ${moving_to ? `To: ${moving_to}` : ""}
         </p>
     </div>
 </body>

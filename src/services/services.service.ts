@@ -72,7 +72,16 @@ export class ServicesService {
     const filteredServices = services.find((serviceItem) => serviceItem.type === 'cleaning')
 
     if (filteredServices) {
-      console.log(filteredServices)
+      return filteredServices.options
+    }
+    return []
+  }
+
+  async getMovingOptions() {
+    const services = await this.getServices()
+    const filteredServices = services.find((serviceItem) => serviceItem.type === 'moving')
+
+    if (filteredServices) {
       return filteredServices.options
     }
     return []
@@ -93,7 +102,9 @@ export class ServicesService {
           amountOfStoreRooms: serviceRequestDto.stores_amount || 'More than 8',
           price: serviceRequestDto.price || "Has to be dissccused",
           time: serviceRequestDto.time || "Has to be dissccused",
-          phone_number: serviceRequestDto.phone_number
+          phone_number: serviceRequestDto.phone_number,
+          moving_from: serviceRequestDto.moving_from,
+          moving_to: serviceRequestDto.moving_to
         }
       ))
     }
