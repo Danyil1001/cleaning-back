@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Service } from './entities/services.entity';
@@ -6,6 +6,7 @@ import { EmailService } from 'src/email/email.service';
 import { getRequestTemplate } from 'src/email/templates/email-request';
 import { ServiceRequestDto } from './dto/service-request.dto';
 import { ServicesOptionsService } from 'src/services_options/services_options.service';
+import { ServicesEnum } from './enum/services.enum';
 
 type ServiceItemTypeMap = {
   [key: string]: {
@@ -35,8 +36,18 @@ export class ServicesService {
     @InjectRepository(Service)
     private serviceRepo: Repository<Service>,
     private emailService: EmailService,
+    @Inject(forwardRef(() => ServicesOptionsService))
     private serviceOptionsService: ServicesOptionsService,
   ) { }
+
+  async getOneByType(serviceEnum: ServicesEnum): Promise<Service | null> {
+    const service = await this.serviceRepo.findOne({
+      where: {
+        type: serviceEnum
+      }
+    })
+    return service
+  }
 
   async getServices(): Promise<ServiceDto[]> {
     const services = await this.serviceRepo.find({

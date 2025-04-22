@@ -20,6 +20,36 @@ export class ServiceOption {
   })
   title: string;
 
+  @Column({
+    type: String,
+    nullable: true
+  })
+  description: string;
+
+  @Column({
+    type: Number,
+    nullable: true
+  })
+  avg_min_time: number;
+
+  @Column({
+    type: Number,
+    nullable: true
+  })
+  avg_max_time: number;
+
+  @Column({
+    type: Number,
+    nullable: true
+  })
+  avg_min_price: number;
+
+  @Column({
+    type: Number,
+    nullable: true
+  })
+  avg_max_price: number;
+
   @ManyToOne(() => Service, service => service.options)
   service: Service;
 

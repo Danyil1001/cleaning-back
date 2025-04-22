@@ -18,11 +18,56 @@ export class ServicesOptionsSeedService {
   async run() {
 
     const serviceOptions = [
-      { type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR, title: "Reinigung nach Renovierung", serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.CLEANING_GENEARL, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
-      { type: ServicesOptionsEnum.MOVING, title: 'Umzug', serviceType: 'MOVING' },
-      { type: ServicesOptionsEnum.CLEANING_MOVING, title: 'Umfassender Service', serviceType: 'CLEANING_MOVING' },
+      {
+        type: ServicesOptionsEnum.CLEANING_AFTER_REPAIR,
+        title: "Reinigung nach Renovierung",
+        description: 'Tiefenreinigung von Baustaub, Schmutz und Materialrückständen. Beinhaltet das Waschen von Fenstern, Böden, Wänden und allen Oberflächen, um den Raum vollständig bezugsfertig zu machen',
+        serviceType: 'CLEANING',
+        avg_min_time: 2,
+        avg_max_time: 4,
+        avg_min_price: 500,
+        avg_max_price: 700,
+      },
+      {
+        type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE,
+        title: "Reinigung vor der Übergabe",
+        description: 'Endreinigung der Räumlichkeiten vor der Übergabe. Dazu gehört die Reinigung von Oberflächen, Fenstern, Bädern und Küchen, um die Immobilie in einen perfekten Zustand zu versetzen',
+        serviceType: 'CLEANING',
+        avg_min_time: 2,
+        avg_max_time: 4,
+        avg_min_price: 500,
+        avg_max_price: 700,
+      },
+      {
+        type: ServicesOptionsEnum.CLEANING_GENEARL,
+        title: "Allgemeine Reinigung",
+        description: 'Umfassende und gründliche Reinigung aller Oberflächen, Möbel, Geräte, Fenster, Böden und schwer zugänglichen Stellen, um eine perfekt saubere Umgebung zu gewährleisten',
+        serviceType: 'CLEANING',
+        avg_min_time: 2,
+        avg_max_time: 4,
+        avg_min_price: 500,
+        avg_max_price: 700,
+      },
+      {
+        type: ServicesOptionsEnum.MOVING,
+        title: 'Umzug',
+        serviceType: 'MOVING',
+        description: 'Umzug bietet Unterstützung beim sicheren Transport Ihrer Möbel und persönlichen Gegenstände. Wir kümmern uns um Verpackung und Entladung, damit Ihr Umzug verläuft.',
+        avg_min_time: 2,
+        avg_max_time: 4,
+        avg_min_price: 500,
+        avg_max_price: 700,
+      },
+      {
+        type: ServicesOptionsEnum.CLEANING_MOVING,
+        title: 'Umfassender Service',
+        serviceType: 'CLEANING_MOVING',
+        description: 'Ein umfassender Service kombiniert Reinigung und Transport. Wir kümmern uns um den sicheren Transport Ihrer Möbel und die Reinigung Ihrer alten und neuen Wohnung',
+        avg_min_time: 2,
+        avg_max_time: 4,
+        avg_min_price: 500,
+        avg_max_price: 700,
+      },
     ];
 
     for (const option of serviceOptions) {
@@ -43,7 +88,12 @@ export class ServicesOptionsSeedService {
         const serviceOption = this.serviceOptionRepository.create({
           service,
           type: option.type,
-          title: option.title
+          title: option.title,
+          description: option.description,
+          avg_min_time: option.avg_min_time,
+          avg_max_time: option.avg_max_time,
+          avg_min_price: option.avg_min_price,
+          avg_max_price: option.avg_max_price
         });
 
         await this.serviceOptionRepository.save(serviceOption);
