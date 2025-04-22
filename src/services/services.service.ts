@@ -2,13 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Service } from './entities/services.entity';
-import { title } from 'process';
 import { EmailService } from 'src/email/email.service';
 import { getRequestTemplate } from 'src/email/templates/email-request';
 import { ServiceRequestDto } from './dto/service-request.dto';
 import { ServicesOptionsService } from 'src/services_options/services_options.service';
-import { ServiceOption } from 'src/services_options/entities/services_options.entity';
 
+type ServiceItemTypeMap = {
+  [key: string]: {
+    id: number;
+    amount: number;
+    price: number;
+    time: number;
+  }[];
+};
+
+export type ServiceOptionDto = {
+  id: number;
+  type: string;
+  title: string;
+  serviceItemTypes: ServiceItemTypeMap;
+};
+
+export type ServiceDto = {
+  id: number;
+  type: string;
+  options: ServiceOptionDto[];
+};
 
 @Injectable()
 export class ServicesService {
@@ -19,7 +38,7 @@ export class ServicesService {
     private serviceOptionsService: ServicesOptionsService,
   ) { }
 
-  async getServices(): Promise<any> {
+  async getServices(): Promise<ServiceDto[]> {
     const services = await this.serviceRepo.find({
       relations: [
         'options',
@@ -28,18 +47,12 @@ export class ServicesService {
       ],
     });
 
-    return services.map(service => {
-      const serviceDto: any = {
+    return services.map((service): ServiceDto => {
+      return {
         id: service.id,
         type: service.type,
-        options: service.options.map(option => {
-          const optionDto: any = {
-            id: option.id,
-            type: option.type,
-            title: option.title,
-          };
-
-          optionDto.serviceItemTypes = option.serviceOptionItemAmountPrices.reduce(
+        options: service.options.map((option): ServiceOptionDto => {
+          const serviceItemTypes = option.serviceOptionItemAmountPrices.reduce<ServiceItemTypeMap>(
             (acc, priceItem) => {
               const itemType = priceItem.serviceItemType.type;
               if (!acc[itemType]) {
@@ -55,44 +68,67 @@ export class ServicesService {
             },
             {},
           );
-          Object.keys(optionDto.serviceItemTypes).forEach(key => {
-            optionDto.serviceItemTypes[key].sort((a, b) => a.amount - b.amount);
+
+          Object.keys(serviceItemTypes).forEach(key => {
+            serviceItemTypes[key].sort((a, b) => a.amount - b.amount);
           });
 
-          return optionDto;
+          return {
+            id: option.id,
+            type: option.type,
+            title: option.title,
+            serviceItemTypes,
+          };
         }),
       };
-
-      return serviceDto;
     });
   }
 
-  async getCleaningOptions() {
-    const services = await this.getServices()
-    const filteredServices = services.find((serviceItem) => serviceItem.type === 'cleaning')
+  async getCleaningOptions(): Promise<ServiceOptionDto[]> {
+    const services = await this.getServices();
+    const options: ServiceOptionDto[] = [];
 
-    if (filteredServices) {
-      return filteredServices.options
+    const cleaningService = services.find(
+      serviceItem => serviceItem.type === 'cleaning'
+    );
+
+    const complexService = services.find(serviceItem => serviceItem.type === 'cleaning_moving');
+
+
+    if (cleaningService) {
+      options.push(...cleaningService.options);
     }
-    return []
+
+    if (complexService) {
+      options.push(...complexService.options);
+    }
+
+    return options
   }
 
-  async getMovingOptions() {
-    const services = await this.getServices()
-    const filteredServices = services.find((serviceItem) => serviceItem.type === 'moving')
+  async getMovingOptions(): Promise<ServiceOptionDto[]> {
+    const services = await this.getServices();
+    const movingService = services.find(serviceItem => serviceItem.type === 'moving');
+    const complexService = services.find(serviceItem => serviceItem.type === 'cleaning_moving');
 
-    if (filteredServices) {
-      return filteredServices.options
+    const options: ServiceOptionDto[] = [];
+
+    if (movingService) {
+      options.push(...movingService.options);
     }
-    return []
+
+    if (complexService) {
+      options.push(...complexService.options);
+    }
+
+    return options;
   }
 
-  async sendRequestForService(serviceRequestDto: ServiceRequestDto) {
-
-    const serviceOption = await this.serviceOptionsService.getOneById(serviceRequestDto.service_id)
+  async sendRequestForService(serviceRequestDto: ServiceRequestDto): Promise<void> {
+    const serviceOption = await this.serviceOptionsService.getOneById(serviceRequestDto.service_id);
     if (serviceOption) {
-      return this.emailService.sendMail(getRequestTemplate(
-        {
+      await this.emailService.sendMail(
+        getRequestTemplate({
           clientName: serviceRequestDto.name,
           serviceName: serviceOption?.title || '',
           email: serviceRequestDto.email,
@@ -100,14 +136,13 @@ export class ServicesService {
           amountOfBathrooms: serviceRequestDto.bathroom_amount || 'More than 8',
           amountOfRooms: serviceRequestDto.rooms_amount || 'More than 8',
           amountOfStoreRooms: serviceRequestDto.stores_amount || 'More than 8',
-          price: serviceRequestDto.price || "Has to be dissccused",
-          time: serviceRequestDto.time || "Has to be dissccused",
+          price: serviceRequestDto.price || 'Has to be discussed',
+          time: serviceRequestDto.time || 'Has to be discussed',
           phone_number: serviceRequestDto.phone_number,
           moving_from: serviceRequestDto.moving_from,
-          moving_to: serviceRequestDto.moving_to
-        }
-      ))
+          moving_to: serviceRequestDto.moving_to,
+        }),
+      );
     }
-
   }
 }

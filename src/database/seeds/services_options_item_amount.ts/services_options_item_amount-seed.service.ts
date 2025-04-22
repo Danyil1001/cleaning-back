@@ -11,6 +11,8 @@ const CLEANING_AFTER_REPAIR = 'CLEANING_AFTER_REPAIR'
 const CLEANING_BEFORE_MOVE = 'CLEANING_BEFORE_MOVE'
 const CLEANING_GENEARL = 'CLEANING_GENEARL'
 const MOVING = 'MOVING'
+const CLEANING_MOVING = 'CLEANING_MOVING'
+
 
 
 @Injectable()
@@ -126,7 +128,6 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'BATHROOM', time: 60, amount: 8, price: 1600 },
 
 
-
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 100 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 200 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 300 },
@@ -224,6 +225,55 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 7, price: 1600 },
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 7.5, price: 1700 },
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 8, price: 1800 },
+
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 1, price: 400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 1.5, price: 500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 2, price: 600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 2.5, price: 700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 3, price: 800 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 3.5, price: 900 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 4, price: 1000 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 4.5, price: 1100 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 5, price: 1200 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 5.5, price: 1300 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 6, price: 1400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 6.5, price: 1500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 7, price: 1600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 7.5, price: 1700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 8, price: 1800 },
+
+
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 1, price: 400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 1.5, price: 500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 2, price: 600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 2.5, price: 700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 3, price: 800 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 3.5, price: 900 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 4, price: 1000 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 4.5, price: 1100 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 5, price: 1200 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 5.5, price: 1300 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 6, price: 1400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 6.5, price: 1500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 7, price: 1600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 7.5, price: 1700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 8, price: 1800 },
+
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 2.5, price: 700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 3, price: 800 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 3.5, price: 900 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 4, price: 1000 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 4.5, price: 1100 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 5, price: 1200 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 5.5, price: 1300 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 6, price: 1400 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 6.5, price: 1500 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 7, price: 1600 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 7.5, price: 1700 },
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 8, price: 1800 },
     ];
 
     for (const entry of serviceOptionItemAmountPrices) {
@@ -251,7 +301,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       const serviceOptionItemAmountPrice = this.serviceOptionItemAmountPriceRepository.create({
         serviceOption,
         serviceItemType,
-        time: entry.time, 
+        time: entry.time,
         amount: entry.amount,
         price: entry.price,
       });

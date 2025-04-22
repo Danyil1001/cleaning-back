@@ -1,4 +1,5 @@
 export enum ServicesEnum {
     CLEANING = 'cleaning',
-    MOVING = 'moving'
+    MOVING = 'moving',
+    CLEANING_MOVING = 'cleaning_moving'
 }

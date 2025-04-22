@@ -22,6 +22,7 @@ export class ServicesOptionsSeedService {
       { type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
       { type: ServicesOptionsEnum.CLEANING_GENEARL, title: "Reinigung vor der Übergabe", serviceType: 'CLEANING' },
       { type: ServicesOptionsEnum.MOVING, title: 'Umzug', serviceType: 'MOVING' },
+      { type: ServicesOptionsEnum.CLEANING_MOVING, title: 'Umfassender Service', serviceType: 'CLEANING_MOVING' },
     ];
 
     for (const option of serviceOptions) {

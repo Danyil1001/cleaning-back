@@ -1,29 +1,28 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ServicesService } from './services.service';
-import { Service } from './entities/services.entity';
-import {  ServiceRequestDto } from './dto/service-request.dto';
+import { ServiceDto, ServiceOptionDto, ServicesService } from './services.service';
+import { ServiceRequestDto } from './dto/service-request.dto';
 
 @Controller('services')
 export class ServicesController {
     constructor(private readonly servicesService: ServicesService) { }
 
     @Get()
-    findAll(): Promise<Service | null> {
+    findAll(): Promise<ServiceDto[]> {
         return this.servicesService.getServices()
     }
 
     @Get('/cleaning')
-    getCleaningOptions(): Promise<Service | null> {
+    getCleaningOptions(): Promise<ServiceOptionDto[]> {
         return this.servicesService.getCleaningOptions()
     }
 
     @Get('/moving')
-    getMovingOptions(): Promise<Service | null> {
+    getMovingOptions(): Promise<ServiceOptionDto[]> {
         return this.servicesService.getMovingOptions()
     }
 
     @Post('/request')
-    sendRequestForService(@Body() serviceRequestDto:ServiceRequestDto): Promise<Service | null> {
+    sendRequestForService(@Body() serviceRequestDto: ServiceRequestDto): Promise<void> {
         return this.servicesService.sendRequestForService(serviceRequestDto)
     }
 }
