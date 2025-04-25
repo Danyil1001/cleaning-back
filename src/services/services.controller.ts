@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ServiceDto, ServiceOptionDto, ServicesService } from './services.service';
 import { ServiceRequestDto } from './dto/service-request.dto';
+import { ServiceRepairRequestDto } from './dto/service-request-repair.dto';
 
 @Controller('services')
 export class ServicesController {
@@ -25,4 +26,11 @@ export class ServicesController {
     sendRequestForService(@Body() serviceRequestDto: ServiceRequestDto): Promise<void> {
         return this.servicesService.sendRequestForService(serviceRequestDto)
     }
+
+    @Post('/request-repair')
+    sendRequestForRepair(@Body() serviceRepairRequestDto: ServiceRepairRequestDto): Promise<void> {
+        return this.servicesService.sendRequestForRepair(serviceRepairRequestDto)
+    }
+
+
 }

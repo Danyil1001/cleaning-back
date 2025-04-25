@@ -3,10 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Service } from './entities/services.entity';
 import { EmailService } from 'src/email/email.service';
-import { getRequestTemplate } from 'src/email/templates/email-request';
+import { getRequestTemplate, getRequestTemplateForRepair } from 'src/email/templates/email-request';
 import { ServiceRequestDto } from './dto/service-request.dto';
 import { ServicesOptionsService } from 'src/services_options/services_options.service';
 import { ServicesEnum } from './enum/services.enum';
+import { ServiceRepairRequestDto } from './dto/service-request-repair.dto';
 
 type ServiceItemTypeMap = {
   [key: string]: {
@@ -152,6 +153,23 @@ export class ServicesService {
           phone_number: serviceRequestDto.phone_number,
           moving_from: serviceRequestDto.moving_from,
           moving_to: serviceRequestDto.moving_to,
+        }),
+      );
+    }
+  }
+
+  async sendRequestForRepair(serviceRequestDto: ServiceRepairRequestDto) {
+    const serviceOption = await this.serviceOptionsService.getOneById(serviceRequestDto.service_id);
+    if (serviceOption) {
+      await this.emailService.sendMail(
+        getRequestTemplateForRepair({
+          clientName: serviceRequestDto.name,
+          email: serviceRequestDto.email,
+          address: serviceRequestDto.address || '',
+          phone_number: serviceRequestDto.phone_number,
+          serviceName: serviceOption?.title || '',
+          price: `${serviceOption.avg_min_price} - ${serviceOption.avg_max_price}`,
+          time: `${serviceOption.avg_min_time} - ${serviceOption.avg_max_time}`
         }),
       );
     }

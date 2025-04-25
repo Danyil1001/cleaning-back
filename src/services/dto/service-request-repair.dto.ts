@@ -1,7 +1,7 @@
 // write request dto here
 import { IsNumber, IsOptional, IsString } from "class-validator";
 
-export class ServiceRequestDto {
+export class ServiceRepairRequestDto {
     @IsString()
     name: string;
 

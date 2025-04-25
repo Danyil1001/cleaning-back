@@ -17,6 +17,7 @@ export class ServicesSeedService {
       { type: ServicesEnum.CLEANING },
       { type: ServicesEnum.MOVING },
       { type: ServicesEnum.CLEANING_MOVING },
+      { type: ServicesEnum.REPAIR },
     ];
 
     for (const service of services) {
