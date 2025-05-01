@@ -1,1 +1,1 @@
-# cleaning-back
+npm run migration:generate src/database/migrations/cleaning-back
