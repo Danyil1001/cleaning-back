@@ -6,8 +6,8 @@ import { ServiceItemType } from 'src/services_item_type/entities/services_item_t
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DATABASE_PORT || '5432', 10),
+  host: 'localhost',
+  port: 5432,
   username: 'postgres',
   password: 'new_password',
   database: 'cleaning',
