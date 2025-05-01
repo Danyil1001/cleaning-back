@@ -12,14 +12,14 @@ export class TypeOrmConfigService {
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: 'postgres', // Example for PostgreSQL
-      host: this.configService.get('DB_HOST'),
-      port: this.configService.get('DB_PORT'),
-      username: this.configService.get('DB_USERNAME'),
-      password: this.configService.get('DB_PASSWORD'),
-      database: this.configService.get('DB_NAME'),
-      entities: [Service, ServiceOption, ServiceItemType, ServiceOptionItemAmountPrice], // Explicitly adding entities here
-      synchronize: true, // Set to false in production to avoid auto migrations
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'new_password',
+      database: 'cleaning',
+      entities: [Service, ServiceOption, ServiceItemType, ServiceOptionItemAmountPrice],
+      synchronize: true, 
     };
   }
 }
