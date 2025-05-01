@@ -8,9 +8,9 @@ export const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DATABASE_PORT || '5432', 10),
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  username: 'postgres',
+  password: 'new_password',
+  database: 'cleaning',
   synchronize: false,
   logging: true,
   entities: [
