@@ -31,6 +31,4 @@ export class ServicesController {
     sendRequestForRepair(@Body() serviceRepairRequestDto: ServiceRepairRequestDto): Promise<void> {
         return this.servicesService.sendRequestForRepair(serviceRepairRequestDto)
     }
-
-
 }

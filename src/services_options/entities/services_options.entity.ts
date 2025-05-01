@@ -27,6 +27,12 @@ export class ServiceOption {
   description: string;
 
   @Column({
+    type: String,
+    nullable: true
+  })
+  image_name: string;
+
+  @Column({
     type: Number,
     nullable: true
   })
@@ -52,6 +58,7 @@ export class ServiceOption {
 
   @ManyToOne(() => Service, service => service.options)
   service: Service;
+  
 
   @OneToMany(() => ServiceOptionItemAmountPrice, (serviceOptionItemAmountPrice) => serviceOptionItemAmountPrice.serviceOption)
   serviceOptionItemAmountPrices: ServiceOptionItemAmountPrice[];

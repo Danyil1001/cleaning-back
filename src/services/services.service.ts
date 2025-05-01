@@ -145,9 +145,9 @@ export class ServicesService {
           serviceName: serviceOption?.title || '',
           email: serviceRequestDto.email,
           address: serviceRequestDto.address || '',
-          amountOfBathrooms: serviceRequestDto.bathroom_amount || 'More than 8',
-          amountOfRooms: serviceRequestDto.rooms_amount || 'More than 8',
-          amountOfStoreRooms: serviceRequestDto.stores_amount || 'More than 8',
+          ...(serviceRequestDto.bathroom_amount && { amountOfBathrooms: serviceRequestDto.bathroom_amount === -1 ? 'Too many rooms' : serviceRequestDto.bathroom_amount }),
+          amountOfRooms: serviceRequestDto.rooms_amount === -1 ? 'Too many rooms' : serviceRequestDto.rooms_amount,
+          amountOfStoreRooms: serviceRequestDto.stores_amount === -1 ? 'Too many rooms' : serviceRequestDto.stores_amount,
           price: serviceRequestDto.price || 'Has to be discussed',
           time: serviceRequestDto.time || 'Has to be discussed',
           phone_number: serviceRequestDto.phone_number,
@@ -159,19 +159,14 @@ export class ServicesService {
   }
 
   async sendRequestForRepair(serviceRequestDto: ServiceRepairRequestDto) {
-    const serviceOption = await this.serviceOptionsService.getOneById(serviceRequestDto.service_id);
-    if (serviceOption) {
-      await this.emailService.sendMail(
-        getRequestTemplateForRepair({
-          clientName: serviceRequestDto.name,
-          email: serviceRequestDto.email,
-          address: serviceRequestDto.address || '',
-          phone_number: serviceRequestDto.phone_number,
-          serviceName: serviceOption?.title || '',
-          price: `${serviceOption.avg_min_price} - ${serviceOption.avg_max_price}`,
-          time: `${serviceOption.avg_min_time} - ${serviceOption.avg_max_time}`
-        }),
-      );
-    }
+
+    await this.emailService.sendMail(
+      getRequestTemplateForRepair({
+        clientName: serviceRequestDto.name,
+        email: serviceRequestDto.email,
+        address: serviceRequestDto.address || '',
+        phone_number: serviceRequestDto.phone_number,
+      }),
+    );
   }
 }

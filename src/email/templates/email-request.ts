@@ -19,7 +19,7 @@ export const getRequestTemplate = ({
         address?: string
         serviceName: string
         amountOfRooms: number | string
-        amountOfBathrooms: number | string
+        amountOfBathrooms?: number | string
         amountOfStoreRooms: number | string
         price: number | string
         time: number | string
@@ -90,11 +90,11 @@ export const getRequestTemplate = ({
         Client name: ${clientName || ''}<br><br>
         Email: ${email || ''}<br><br>
         Phone number: ${phone_number || ''}<br><br>
-        Address: ${address || ''}<br><br>
+        ${address ? `Address: ${address || ''}<br><br>` : ''}
         Service name: ${serviceName || ''}<br><br>
         Amount of rooms: ${amountOfRooms || ''}<br><br>
-        Amount of bathrooms: ${amountOfBathrooms || ''}<br><br>
-        Amount of store rooms: ${amountOfStoreRooms || ''}<br><br>
+        ${amountOfBathrooms ? `Amount of bathrooms: ${amountOfBathrooms}<br><br>` : ''}
+        Amount of store rooms: ${amountOfStoreRooms}<br><br>
         Approximate price: ${price || ''}<br><br>
         Approximate time: ${time || ''}<br><br>
         ${moving_from ? `From: ${moving_from}` : ""}<br><br>
@@ -108,19 +108,13 @@ export const getRequestTemplateForRepair = ({
     clientName,
     email,
     address,
-    phone_number,
-    serviceName,
-    price,
-    time
+    phone_number
 }
     : {
         clientName: string
         phone_number: string
         email: string
         address?: string
-        serviceName: string
-        price: number | string
-        time: number | string
     }
 ) => `
 <!DOCTYPE html>
@@ -181,15 +175,12 @@ export const getRequestTemplateForRepair = ({
         <div class="logo-image">
         </div>
         <div class="logo">Message from client</div>
-        <h2>Client send request to you</h2>
+        <h2>Client sent request about some repair service</h2>
         <p>
         Client name: ${clientName || ''}<br><br>
         Email: ${email || ''}<br><br>
         Phone number: ${phone_number || ''}<br><br>
         Address: ${address || ''}<br><br>
-        Service name: ${serviceName || ''}<br><br>
-        Approximate price: ${price || ''}<br><br>
-        Approximate time: ${time || ''}<br><br>
         </p>
     </div>
 </body>

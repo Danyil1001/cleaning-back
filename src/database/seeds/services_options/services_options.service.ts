@@ -32,6 +32,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 4,
         avg_min_price: 500,
         avg_max_price: 700,
+        image_name: 'after-repair-cleaning.svg'
       },
       {
         type: ServicesOptionsEnum.CLEANING_BEFORE_MOVE,
@@ -42,6 +43,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 4,
         avg_min_price: 500,
         avg_max_price: 700,
+        image_name: 'before-move-cleaning.svg'
       },
       {
         type: ServicesOptionsEnum.CLEANING_GENEARL,
@@ -52,6 +54,8 @@ export class ServicesOptionsSeedService {
         avg_max_time: 4,
         avg_min_price: 500,
         avg_max_price: 700,
+        image_name: 'general-cleaning.svg'
+
       },
       {
         type: ServicesOptionsEnum.MOVING,
@@ -62,6 +66,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 4,
         avg_min_price: 500,
         avg_max_price: 700,
+        image_name: 'moving.svg'
       },
       {
         type: ServicesOptionsEnum.CLEANING_MOVING,
@@ -72,6 +77,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 4,
         avg_min_price: 500,
         avg_max_price: 700,
+        image_name: 'complex.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_GYPSUM_WALL,
@@ -82,6 +88,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'gipskartonwanden.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_EXTERIOR_PAINTING,
@@ -92,6 +99,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'auBenanstrich.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_INTERIOR_PAINTING,
@@ -102,6 +110,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'innenanstrich.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_RESTORATION,
@@ -112,6 +121,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'restaurierung.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_FLOOR,
@@ -122,6 +132,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'bodenreparatur.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_PLUMBING,
@@ -132,6 +143,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'klempnerarbeiten-reparatur.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_TILE_LAYING,
@@ -142,6 +154,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'fliesenverlegung.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_TILE_REPLACEMENT,
@@ -152,6 +165,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'austausch-von-fliesen.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_BRICKWORK,
@@ -162,6 +176,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'mauerarbeiten.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_RENOVATION,
@@ -172,6 +187,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'renovationen.svg'
       },
       {
         type: ServicesOptionsEnum.REPAIR_REMODELING,
@@ -182,6 +198,7 @@ export class ServicesOptionsSeedService {
         avg_max_time: 5,
         avg_min_price: 555,
         avg_max_price: 750,
+        image_name: 'umbauten.svg'
       }
     ];
 
@@ -208,7 +225,8 @@ export class ServicesOptionsSeedService {
           avg_min_time: option.avg_min_time,
           avg_max_time: option.avg_max_time,
           avg_min_price: option.avg_min_price,
-          avg_max_price: option.avg_max_price
+          avg_max_price: option.avg_max_price,
+          image_name: option.image_name
         });
 
         await this.serviceOptionRepository.save(serviceOption);

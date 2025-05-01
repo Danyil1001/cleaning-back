@@ -127,7 +127,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'BATHROOM', time: 60, amount: 7.5, price: 1500 },
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'BATHROOM', time: 60, amount: 8, price: 1600 },
 
-
+      { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 0, amount: 0, price: 0 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 100 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 200 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 300 },
@@ -144,6 +144,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 7.5, price: 1400 },
       { serviceOptionType: CLEANING_AFTER_REPAIR, serviceItemType: 'STORE_ROOM', time: 60, amount: 8, price: 1500 },
 
+      { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 0, amount: 0, price: 0 },
       { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 200 },
       { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 300 },
       { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 400 },
@@ -160,6 +161,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 60, amount: 7.5, price: 1500 },
       { serviceOptionType: CLEANING_BEFORE_MOVE, serviceItemType: 'STORE_ROOM', time: 60, amount: 8, price: 1600 },
 
+      { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'STORE_ROOM', time: 0, amount: 0, price: 0 },
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 300 },
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 400 },
       { serviceOptionType: CLEANING_GENEARL, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 500 },
@@ -192,24 +194,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 7.5, price: 1700 },
       { serviceOptionType: MOVING, serviceItemType: 'NORMAL_ROOM', time: 60, amount: 8, price: 1800 },
 
-
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 1, price: 400 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 1.5, price: 500 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 2, price: 600 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 2.5, price: 700 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 3, price: 800 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 3.5, price: 900 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 4, price: 1000 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 4.5, price: 1100 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 5, price: 1200 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 5.5, price: 1300 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 6, price: 1400 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 6.5, price: 1500 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 7, price: 1600 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 7.5, price: 1700 },
-      { serviceOptionType: MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 8, price: 1800 },
-
-
+      { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 0, amount: 0, price: 0 },
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 400 },
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 500 },
       { serviceOptionType: MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 600 },
@@ -259,6 +244,7 @@ export class ServiceOptionItemAmountPriceSeedService {
       { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 7.5, price: 1700 },
       { serviceOptionType: CLEANING_MOVING, serviceItemType: 'BATHROOM', time: 60, amount: 8, price: 1800 },
 
+      { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 0, amount: 0, price: 0 },
       { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1, price: 400 },
       { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 1.5, price: 500 },
       { serviceOptionType: CLEANING_MOVING, serviceItemType: 'STORE_ROOM', time: 60, amount: 2, price: 600 },

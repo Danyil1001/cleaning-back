@@ -10,7 +10,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'https://lms.corpsoft.io',
-      'https://accounts.google.com'
+      'https://accounts.google.com',
     ],
     allowedHeaders: [
       'Access-Control-Allow-Origin',
@@ -26,9 +26,11 @@ async function bootstrap() {
   };
 
   app.enableCors(corsOptions);
-  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+
+  app.use('/uploads', express.static(join(__dirname, '../../uploads')));
+
   await app.listen(process.env.PORT ?? 3000);
   console.log(`Lms listening on port ${process.env.PORT} on ${await app.getUrl()}`);
-
 }
-bootstrap(); 
+
+bootstrap();

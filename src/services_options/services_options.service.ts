@@ -20,29 +20,41 @@ export class ServicesOptionsService {
     }
 
     async getServiceOptions(type: ServicesEnum, add_complex: string) {
-        let complex: any = null
-        const service = await this.serviceService.getOneByType(type)
+        let complex: any = null;
+        const service = await this.serviceService.getOneByType(type);
 
         if (service) {
             const options = await this.servicesOptionsRepo.find({
                 where: {
-                    service: service
-                }
-            })
+                    service: service,
+                },
+            });
+
+            // Add complex service option if needed
             if (add_complex) {
-                complex = await this.serviceService.getOneByType(ServicesEnum.CLEANING_MOVING)
+                complex = await this.serviceService.getOneByType(ServicesEnum.CLEANING_MOVING);
                 const complexOption = await this.servicesOptionsRepo.findOne({
                     where: {
-                        service: complex
-                    }
-                })
+                        service: complex,
+                    },
+                });
                 if (complexOption) {
-                    options.push(complexOption)
+                    options.push(complexOption);
                 }
             }
-            return options
+
+            // Add the full image URL to each option
+            const optionsWithImageUrls = options.map(option => {
+                return {
+                    ...option,
+                    image_url: option.image_name ? `uploads/${option.image_name}` : "",  // Add the full image URL
+                };
+            });
+
+            return optionsWithImageUrls;
         }
-        return []
+        return [];
     }
+
 
 }
