@@ -30,7 +30,7 @@ export class EmailService {
 
       const mailOptions = {
         from: `"${fromName}" <${fromEmail}>`,
-        to: 'danyil.romania2002@gmail.com',
+        to: 'danyil.shch@gmail.com',
         subject: 'Service request',
         html
       };
