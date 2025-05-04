@@ -5,10 +5,11 @@ import { ServiceOptionItemAmountPrice } from 'src/services_option_item_amount_pr
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ClientRequest } from 'src/client-requests/entities/client-requests.entity';
 
 @Injectable()
 export class TypeOrmConfigService {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
@@ -18,8 +19,8 @@ export class TypeOrmConfigService {
       username: 'postgres',
       password: 'new_password',
       database: 'cleaning',
-      entities: [Service, ServiceOption, ServiceItemType, ServiceOptionItemAmountPrice],
-      synchronize: true, 
+      entities: [Service, ServiceOption, ServiceItemType, ServiceOptionItemAmountPrice, ClientRequest],
+      synchronize: true,
     };
   }
 }

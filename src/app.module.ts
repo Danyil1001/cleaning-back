@@ -11,6 +11,7 @@ import { AppDataSource } from './database/data-source';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import emailConfig from './config/email.config';
+import { ClientRequestModule } from './client-requests/client-requests.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import emailConfig from './config/email.config';
     ServicesOptionsModule,
     ServicesOptionItemAmountPriceModule,
     ServicesItemTypeModule,
+    ClientRequestModule
   ],
   controllers: [AppController],
   providers: [AppService],
