@@ -22,10 +22,13 @@ export class EmailService {
     html?: string,
   ) {
     try {
+      const fromName = this.configService.get<string>('email.emailFromName');
+      const fromEmail = this.configService.get<string>('email.emailFromEmail');
 
       const mailOptions = {
-        to:'danyil.romania2002@gmail.com',
-        subject:'Service request',
+        from: `"${fromName}" <${fromEmail}>`,
+        to: 'danyil.romania2002@gmail.com',
+        subject: 'Service request',
         html
       };
 
