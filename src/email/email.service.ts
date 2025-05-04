@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
-import { getRequestTemplate } from './templates/email-request';
 
 @Injectable()
 export class EmailService {
@@ -23,12 +22,9 @@ export class EmailService {
     html?: string,
   ) {
     try {
-      const fromName = this.configService.get<string>('email.emailFromName');
-      const fromEmail = this.configService.get<string>('email.emailFromEmail');
 
       const mailOptions = {
-        from: `"${fromName}" <${fromEmail}>`,
-        to:'danyil.shch@gmail.com',
+        to:'danyil.romania2002@gmail.com',
         subject:'Service request',
         html
       };
