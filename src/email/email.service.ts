@@ -25,6 +25,9 @@ export class EmailService {
       const fromName = this.configService.get<string>('email.emailFromName');
       const fromEmail = this.configService.get<string>('email.emailFromEmail');
 
+      console.log(fromEmail)
+      console.log(fromName)
+
       const mailOptions = {
         from: `"${fromName}" <${fromEmail}>`,
         to: 'danyil.romania2002@gmail.com',
