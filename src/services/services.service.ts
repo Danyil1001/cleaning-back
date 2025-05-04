@@ -8,6 +8,7 @@ import { ServiceRequestDto } from './dto/service-request.dto';
 import { ServicesOptionsService } from 'src/services_options/services_options.service';
 import { ServicesEnum } from './enum/services.enum';
 import { ServiceRepairRequestDto } from './dto/service-request-repair.dto';
+import { ClientRequestService } from 'src/client-requests/client-requests.service';
 
 type ServiceItemTypeMap = {
   [key: string]: {
@@ -39,6 +40,8 @@ export class ServicesService {
     private emailService: EmailService,
     @Inject(forwardRef(() => ServicesOptionsService))
     private serviceOptionsService: ServicesOptionsService,
+    // @Inject(forwardRef(() => ClientRequestService))
+    private clientRequestService: ClientRequestService,
   ) { }
 
   async getOneByType(serviceEnum: ServicesEnum): Promise<Service | null> {
@@ -139,18 +142,25 @@ export class ServicesService {
   async sendRequestForService(serviceRequestDto: ServiceRequestDto): Promise<void> {
     const serviceOption = await this.serviceOptionsService.getOneById(serviceRequestDto.service_id);
     if (serviceOption) {
+      const basicData = {
+        clientName: serviceRequestDto.name,
+        email: serviceRequestDto.email,
+        address: serviceRequestDto.address || '',
+        phone_number: serviceRequestDto.phone_number,
+      }
+      console.log('serviceOption')
+      console.log(serviceOption)
+
+      this.clientRequestService.saveClientRequest(basicData, serviceOption)
       await this.emailService.sendMail(
         getRequestTemplate({
-          clientName: serviceRequestDto.name,
+          ...basicData,
           serviceName: serviceOption?.title || '',
-          email: serviceRequestDto.email,
-          address: serviceRequestDto.address || '',
           ...(serviceRequestDto.bathroom_amount && { amountOfBathrooms: serviceRequestDto.bathroom_amount === -1 ? 'Too many rooms' : serviceRequestDto.bathroom_amount }),
           amountOfRooms: serviceRequestDto.rooms_amount === -1 ? 'Too many rooms' : serviceRequestDto.rooms_amount,
           amountOfStoreRooms: serviceRequestDto.stores_amount === -1 ? 'Too many rooms' : serviceRequestDto.stores_amount,
           price: serviceRequestDto.price || 'Has to be discussed',
           time: serviceRequestDto.time || 'Has to be discussed',
-          phone_number: serviceRequestDto.phone_number,
           moving_from: serviceRequestDto.moving_from,
           moving_to: serviceRequestDto.moving_to,
         }),
@@ -159,6 +169,15 @@ export class ServicesService {
   }
 
   async sendRequestForRepair(serviceRequestDto: ServiceRepairRequestDto) {
+
+    const basicData = {
+      clientName: serviceRequestDto.name,
+      email: serviceRequestDto.email,
+      address: serviceRequestDto.address || '',
+      phone_number: serviceRequestDto.phone_number,
+    }
+
+    this.clientRequestService.saveClientRequest(basicData)
 
     await this.emailService.sendMail(
       getRequestTemplateForRepair({

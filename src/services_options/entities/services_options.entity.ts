@@ -1,8 +1,8 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ServicesOptionsEnum } from "../enum/services_options.enum";
 import { Service } from "src/services/entities/services.entity";
 import { ServiceOptionItemAmountPrice } from "src/services_option_item_amount_price/entities/services_option_item_amount_price";
-
+import { ClientRequest } from "src/client-requests/entities/client-requests.entity";
 @Entity()
 export class ServiceOption {
   @PrimaryGeneratedColumn()
@@ -58,7 +58,9 @@ export class ServiceOption {
 
   @ManyToOne(() => Service, service => service.options)
   service: Service;
-  
+
+  @OneToOne(() => ClientRequest, (clientRequest) => clientRequest.option)
+  clientRequest: ClientRequest;
 
   @OneToMany(() => ServiceOptionItemAmountPrice, (serviceOptionItemAmountPrice) => serviceOptionItemAmountPrice.serviceOption)
   serviceOptionItemAmountPrices: ServiceOptionItemAmountPrice[];
