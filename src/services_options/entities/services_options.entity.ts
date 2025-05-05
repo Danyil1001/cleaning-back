@@ -59,8 +59,8 @@ export class ServiceOption {
   @ManyToOne(() => Service, service => service.options)
   service: Service;
 
-  @OneToOne(() => ClientRequest, (clientRequest) => clientRequest.option)
-  clientRequest: ClientRequest;
+  @OneToMany(() => ClientRequest, (clientRequest) => clientRequest.option)
+  clientRequests: ClientRequest[];
 
   @OneToMany(() => ServiceOptionItemAmountPrice, (serviceOptionItemAmountPrice) => serviceOptionItemAmountPrice.serviceOption)
   serviceOptionItemAmountPrices: ServiceOptionItemAmountPrice[];
