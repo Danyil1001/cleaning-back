@@ -3,12 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Service } from './entities/services.entity';
 import { EmailService } from 'src/email/email.service';
-import { getRequestTemplate, getRequestTemplateForRepair } from 'src/email/templates/email-request';
+import { getRequestTemplate, getRequestTemplateForRepair, getRequestTemplateForService } from 'src/email/templates/email-request';
 import { ServiceRequestDto } from './dto/service-request.dto';
 import { ServicesOptionsService } from 'src/services_options/services_options.service';
 import { ServicesEnum } from './enum/services.enum';
 import { ServiceRepairRequestDto } from './dto/service-request-repair.dto';
 import { ClientRequestService } from 'src/client-requests/client-requests.service';
+import { ClientRequestDto } from './dto/client-request.dto';
 
 type ServiceItemTypeMap = {
   [key: string]: {
@@ -153,7 +154,7 @@ export class ServicesService {
 
       this.clientRequestService.saveClientRequest(basicData, serviceOption)
       await this.emailService.sendMail(
-        getRequestTemplate({
+        getRequestTemplateForService({
           ...basicData,
           serviceName: serviceOption?.title || '',
           ...(serviceRequestDto.bathroom_amount && { amountOfBathrooms: serviceRequestDto.bathroom_amount === -1 ? 'Too many rooms' : serviceRequestDto.bathroom_amount }),
@@ -181,6 +182,26 @@ export class ServicesService {
 
     await this.emailService.sendMail(
       getRequestTemplateForRepair({
+        clientName: serviceRequestDto.name,
+        email: serviceRequestDto.email,
+        address: serviceRequestDto.address || '',
+        phone_number: serviceRequestDto.phone_number,
+      }),
+    );
+  }
+
+  async sendRequest(serviceRequestDto: ClientRequestDto) {
+    const basicData = {
+      clientName: serviceRequestDto.name,
+      email: serviceRequestDto.email,
+      address: serviceRequestDto.address || '',
+      phone_number: serviceRequestDto.phone_number,
+    }
+
+    this.clientRequestService.saveClientRequest(basicData)
+
+    await this.emailService.sendMail(
+      getRequestTemplate({
         clientName: serviceRequestDto.name,
         email: serviceRequestDto.email,
         address: serviceRequestDto.address || '',

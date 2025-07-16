@@ -10,7 +10,6 @@ async function bootstrap() {
   const corsOptions = {
     origin: [
       'http://localhost:3000',
-      'https://lms.corpsoft.io',
       'https://accounts.google.com',
     ],
     allowedHeaders: [
