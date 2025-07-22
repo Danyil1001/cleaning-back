@@ -7,6 +7,11 @@ import { cwd } from 'process';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.use((req, res, next) => {
+    res.removeHeader('X-Powered-By');
+    next();
+  });
+
   const corsOptions = {
     origin: [
       'http://localhost:3000',
